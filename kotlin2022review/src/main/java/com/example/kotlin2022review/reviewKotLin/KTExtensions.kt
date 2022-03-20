@@ -1,6 +1,9 @@
 package com.example.kotlin2022review.reviewKotLin
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.lang.reflect.Array.get
+import kotlin.collections.ArrayList
 
 //kotlin 扩展函数 extensions
 fun main()
@@ -19,6 +22,20 @@ fun main()
     val str="adjbkdjoiafj;ioaqjroiwak"
     val lastChar = str.lastChar
     println("----lastChar: $lastChar")
+
+    //调用伴生对象的扩展
+    Jump2.print("伴生对象添加的扩展---")
+
+    //测试kotlin 源码中的扩展 let, run, apply
+    testLet(null)
+    testLet("test2")
+
+    val testRun = testRun(Jump())
+    println(testRun)
+
+    testApply()
+
+
 }
 
 //----------下面定义类及其扩展函数---------------------------
@@ -43,3 +60,64 @@ fun <T>MutableList<T>.swap(index1:Int,index2:Int)
 
 //--------扩展属性---------
 val String.lastChar:Char get()=this.get(this.length-1)
+
+//---为伴生对象添加的扩展---
+class Jump2
+{
+    companion object{}
+}
+
+fun Jump2.Companion.print(str:String)
+{
+    println(str)
+}  // 主函数中可以调用 Jump2.print("伴生对象添加的扩展---")
+
+//kotlin 源码中的扩展 let, run, apply
+//let---
+fun testLet(str:String?)
+{
+    str.let {
+        val str2 = "let 扩展-无判空"
+        println(it+str2)
+    }
+   // println(str2)  //错误，str2的作用域只在上面
+
+    //判空用法，str 为空，不触发闭包里面的逻辑    ？。
+    str?.let {
+        //此时隐式函数it 不为空
+        val str2 = "let 扩展-有判空"
+        println(it+str2)
+    }
+    //用下面的，不用上面
+}
+
+//run---
+fun testRun(jump: Jump):String
+{
+    jump.run {
+        //jump.test()
+        test()
+        println("dddddd--test Run 扩展")
+        return "kkkktest Run 扩展 返回"      //后两句是测试返回值的
+    }
+}
+
+//apply---返回传入对象的本身
+//----------------------------
+//val arrayList = mutableListOf<String>()
+
+
+fun testApply(){
+     ArrayList<String>().apply {
+         add("testApply")
+         add("123")
+         add("akakakak")
+     }.run{
+         println(this.toString()) }
+
+    }
+
+
+
+
+
