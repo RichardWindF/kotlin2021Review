@@ -8,8 +8,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.button.MaterialButtonToggleGroup
 
 class MainActivity : AppCompatActivity()
@@ -45,8 +47,13 @@ class MainActivity : AppCompatActivity()
         /*ActivityMainBinding
         linear_rv.*/
         val mRecyclerView = findViewById<RecyclerView>(R.id.linear_rv)
-       // mRecyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)    //纵向
-        mRecyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)  //横向
+       // mRecyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)    // linearlayoutmanager纵向
+       // mRecyclerView.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)  //横向
+
+        //mRecyclerView.layoutManager=GridLayoutManager(this,2)  //gridlayoutmanager
+
+        mRecyclerView.layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL) //StaggeredGridLayoutManager
+
         mRecyclerView.adapter=MyAdapter()
     }
 }
