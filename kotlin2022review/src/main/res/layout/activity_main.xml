@@ -7,13 +7,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RecyclerView in Kotlin"
-        android:textColor="#F50057"
-        android:textSize="24sp"
-        android:layout_margin="30dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <TextView
+            android:id="@+id/show_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_margin="30dp"
+            android:text="RecyclerView in Kotlin"
+            android:textColor="#F50057"
+            android:textSize="24sp" />
+    </ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/linear_rv"
