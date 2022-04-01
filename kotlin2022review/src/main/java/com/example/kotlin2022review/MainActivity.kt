@@ -7,15 +7,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.button.MaterialButtonToggleGroup
+import okhttp3.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity()
 {
-    private val TAG = "MainActivity"
+    private val TAG = "`MainActivity.pre`"
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -59,5 +62,93 @@ class MainActivity : AppCompatActivity()
         mRecyclerView.layoutManager= StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL) //StaggeredGridLayoutManager
 
         mRecyclerView.adapter=MyAdapter()
+
+
+        //GET--同步
+        //getOkHttpDataByGETSync()
+
+
+        //GET--异步
+        getOkHttpDataByGETAsync()
+    }
+
+    //建请求
+    //GET--同步
+    private fun getOkHttpDataByGETSync()
+    {
+        Thread(object : Runnable
+        {
+            override fun run()
+            {
+                val mOkHttpClient = OkHttpClient()
+
+                val request = Request.Builder()
+                    .url("https://www.cnn.com")
+                    .build()
+
+                val call = mOkHttpClient.newCall(request)
+                val response = call.execute()
+
+                var resultString: String? = null
+                if (response.isSuccessful)
+                {
+                    resultString = response.body?.string()
+                }
+
+                val textPost = findViewById<TextView>(R.id.show_TV)
+                textPost.post(object : Runnable
+                {
+                    override fun run()
+                    {
+                        textPost.text ="GET--同步"+resultString
+                    }
+                })
+            }
+
+
+        }).start()
+    }
+
+
+    //GET--异步
+    private fun getOkHttpDataByGETAsync()
+    {
+
+        val mOkHttpClient = OkHttpClient()
+
+        val request = Request.Builder()
+            .url("https://www.cnn.com")
+            .build()
+
+        val call = mOkHttpClient.newCall(request)
+
+        //GET--异步
+        call.enqueue(object: Callback
+        {
+            override fun onFailure(call: Call, e: IOException)
+            {
+            }
+
+            override fun onResponse(call: Call, response: Response)
+            {
+                var resultString: String? = null
+                if (response.isSuccessful)
+                {
+                    resultString = response.body?.string()
+                }
+
+                val textPost = findViewById<TextView>(R.id.show_TV)
+                textPost.post(object : Runnable
+                {
+                    override fun run()
+                    {
+                        textPost.text = "GET--异步"+resultString
+                    }
+                })
+            }
+
+        })
+
+
     }
 }
