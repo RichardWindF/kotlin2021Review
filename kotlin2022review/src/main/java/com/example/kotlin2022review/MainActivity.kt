@@ -1,9 +1,11 @@
 package com.example.kotlin2022review
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.icu.lang.UCharacter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -14,12 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.button.MaterialButtonToggleGroup
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.internal.commonEmptyRequestBody
 import okio.IOException
+import org.json.JSONObject
+import java.io.File
 
 class MainActivity : AppCompatActivity()
 {
-    private val TAG = "`MainActivity.pre`"
+    private val TAG = "MainActivity1"
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -82,7 +88,16 @@ class MainActivity : AppCompatActivity()
         //post--异步
         PostOkHttpDataByPostAsync()
 
+        //--------------------------------------
+        //多表单文件上传
+        //postAsyncMultipart(this)
+
+        //-------------------------------------------
+        //异步提交字符串 ... post， enqueue
+        postAsyncString(this)
+
     }
+
 
 
     //建请求
@@ -180,6 +195,7 @@ class MainActivity : AppCompatActivity()
 
     }
 
+    //------------------------------------------------
     //------------------------------------------------------------------------
     //GET--同步
     private fun getOkHttpDataByGETSync()
@@ -256,7 +272,94 @@ class MainActivity : AppCompatActivity()
             }
 
         })
+    }
+
+    //----------------------------------------------
+    // post 异步请求-多表单文件上传---这个用的时候再查
+
+    private  fun postAsyncMultipart(context:Context)
+    {
+        var mOkHttpClient = OkHttpClient()
+
+        //Android 6.0及以后，对外部存储卡什么的读写，都要动态再申请权限，由用户确定。无论AndroidManifest.xml中是否有存储权限申请
+        val file= File(Environment.getExternalStorageDirectory(),"1.png")       //文件地址？
+        if (!file.exists())
+        {
+            Toast.makeText(context,"文件不存在",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val multipartBody=MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("key1","value1")
+            .addFormDataPart("key2","value2")
+            .addFormDataPart("file","file.png",RequestBody.create("application/octet-stream".toMediaTypeOrNull(),file))
+                             //上传文件1： 接受文件的名字， 2：上传的？
+            .build()
+
+
+        val request = Request.Builder()
+            .url("https://www.51.ca")  //这个接口需要支持文件上传才可以使用的
+            .post(multipartBody)
+            .build()
+
+        val call = mOkHttpClient.newCall(request)
+
+        //call.execute()--同步, 这里选异步
+        call.enqueue(object: Callback
+        {
+            override fun onFailure(call: Call, e: IOException)
+            {
+                Log.e(TAG, "postAsyncMultipart onFailure:${e.message} ")
+            }
+
+            override fun onResponse(call: Call, response: Response)
+            {
+                Log.e(TAG, "postAsyncMultipart onResponse:${response.body?.string()} ")
+            }
+
+        })    // call.execute()--同步
+
+    }
+
+    //-------------------------------------------
+    //异步提交字符串 ... post， enqueue
+    private fun postAsyncString(context: Context)
+    {
+        val mOkHttpClient = OkHttpClient()
+
+        val jsonObject = JSONObject()      //此处以 json 数据为例子  (他们是MAP 数据)
+        jsonObject.put("key1","value1")
+        jsonObject.put("key2",100)
+
+       // val reqeustBody=RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(),jsonObject.toString())
+        val reqeustBody= jsonObject.toString()    //上面弃用，根据提示来到 string.toRequestBody()
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+        val request=Request.Builder()
+            .url("https://www.51.ca")
+            .post(reqeustBody)
+            .build()
+
+        val call = mOkHttpClient.newCall(request)
+        call.enqueue(object: Callback
+        {
+            override fun onFailure(call: Call, e: IOException)
+            {
+                Log.e(TAG, "postAsyncString onFailure:${e.message} ")
+            }
+
+            override fun onResponse(call: Call, response: Response)
+            {
+                Log.e(TAG, "postAsyncString onResponse:${response.body?.string()} ")
+
+            }
+
+        })
 
 
     }
+
+
+
 }
