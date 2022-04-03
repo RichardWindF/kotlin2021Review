@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.kotlin2022review.okhttp.LoggingInterceptor
 import com.google.android.material.button.MaterialButtonToggleGroup
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity()
     //post--异步
     private fun PostOkHttpDataByPostAsync()
     {
+
         val mOkHttpClient = OkHttpClient()
 
         val requestBody = FormBody.Builder()
@@ -163,7 +165,7 @@ class MainActivity : AppCompatActivity()
         val call = mOkHttpClient.newCall(request)
         call.enqueue(object : Callback
         {
-            override fun onFailure(call: Call, e: okio.IOException)
+            override fun onFailure(call: Call, e: IOException)
             {
 
             }
