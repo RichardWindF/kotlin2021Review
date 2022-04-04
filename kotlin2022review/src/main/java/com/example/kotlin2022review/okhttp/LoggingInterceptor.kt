@@ -9,7 +9,7 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Buffer
 
 
-//这个似乎作用不大
+//这个似乎作用不大, okhttp 的东西在 MainActivity.java 中
 class LoggingInterceptor :Interceptor
 {
     override fun intercept(chain: Interceptor.Chain): Response
