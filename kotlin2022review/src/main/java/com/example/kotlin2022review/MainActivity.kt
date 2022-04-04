@@ -14,6 +14,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.kotlin2022review.bean.Account
+import com.example.kotlin2022review.http.ApiService
+import com.example.kotlin2022review.http.HiRetrofit
 import com.example.kotlin2022review.okhttp.LoggingInterceptor
 import com.google.android.material.button.MaterialButtonToggleGroup
 import okhttp3.*
@@ -23,6 +26,7 @@ import okhttp3.internal.commonEmptyRequestBody
 import okio.IOException
 import org.json.JSONObject
 import java.io.File
+import android.content.Intent as Intent1
 
 class MainActivity : AppCompatActivity()
 {
@@ -96,6 +100,46 @@ class MainActivity : AppCompatActivity()
         //-------------------------------------------
         //异步提交字符串 ... post， enqueue
         postAsyncString(this)
+
+
+
+        //-------------------------
+        //测试  Retrofit
+        val apiService:ApiService = HiRetrofit.create(ApiService::class.java)
+        val call = apiService.queryUser("1600932269")
+        //call.enqueue(object: retrofit2.Callback<String>
+        call.enqueue(object: retrofit2.Callback<Account>
+        {
+            override fun onFailure(call: retrofit2.Call<Account>, t: Throwable)
+            {
+                Log.e("Retrofit", t.message?:"unknown reason -fy")
+            }
+
+            override fun onResponse(
+                call: retrofit2.Call<Account>,
+                response: retrofit2.Response<Account>
+            )
+            {
+                Log.e("Retrofit", response.body()?.toString()?:"response is null-fy" )
+            }
+
+
+
+        })
+
+        //-------------------------------------------
+        //  second activity+fragment
+//        findViewById<Button>(R.id.secondAct_Btn).setOnClickListener(object:View.OnClickListener
+//        {
+//            override fun onClick(p0: View?)
+//            {
+//                val intent= Intent1(MainActivity@this,SecondActivity::class.java)
+//                //(MainActivity@this,SecondActivity::class.java)
+//                startActivity(intent)
+//            }
+//
+//        })
+
 
     }
 
@@ -361,6 +405,9 @@ class MainActivity : AppCompatActivity()
 
 
     }
+
+
+
 
 
 
