@@ -26,7 +26,6 @@ import okhttp3.internal.commonEmptyRequestBody
 import okio.IOException
 import org.json.JSONObject
 import java.io.File
-import android.content.Intent as Intent1
 
 class MainActivity : AppCompatActivity()
 {
@@ -126,19 +125,6 @@ class MainActivity : AppCompatActivity()
 
 
         })
-
-        //-------------------------------------------
-        //  second activity+fragment
-//        findViewById<Button>(R.id.secondAct_Btn).setOnClickListener(object:View.OnClickListener
-//        {
-//            override fun onClick(p0: View?)
-//            {
-//                val intent= Intent1(MainActivity@this,SecondActivity::class.java)
-//                //(MainActivity@this,SecondActivity::class.java)
-//                startActivity(intent)
-//            }
-//
-//        })
 
 
     }
