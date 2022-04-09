@@ -1,9 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".SecondActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggle_group"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:selectionRequired="false"
+        android:background="#08000000"
+        app:singleSelection="true"
+
+
+        >
+
+<!--   去掉按钮阴影 style="@style/Widget.Material3.Button.UnelevatedButton"-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tab1"
+
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="tab1"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_launcher_foreground"
+            app:iconGravity="textTop"
+            app:iconTint="@color/black"
+            app:iconSize="50dp"
+
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tab2"
+
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="tab2"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_launcher_foreground"
+            app:iconGravity="textTop"
+            app:iconTint="@color/black"
+            app:iconSize="50dp"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tab3"
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="tab3"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_launcher_foreground"
+            app:iconGravity="textTop"
+            app:iconTint="@color/black"
+            app:iconSize="50dp"
+
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tab4"
+
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            android:text="tab4"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_launcher_foreground"
+            app:iconGravity="textTop"
+            app:iconTint="@color/black"
+            app:iconSize="50dp"
+
+            />
+
+
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
+</LinearLayout>

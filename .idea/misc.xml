@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_second.xml" value="0.4" />
         <entry key="..\:/fy-designed20/Android/AndroidStudioProjects/kotlin2021Stu/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/fy-designed20/Android/AndroidStudioProjects/kotlin2022Review/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/fy-designed20/Android/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_main.xml" value="0.2" />
@@ -18,10 +20,17 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>

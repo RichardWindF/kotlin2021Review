@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_second)
         //setContentView(R.layout.comps_material_button)
 
         /* val button = findViewById<Button>(R.id.button)
