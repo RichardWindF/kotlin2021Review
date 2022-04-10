@@ -1,6 +1,8 @@
 package com.example.kotlin2022review.fragments
 
+import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.kotlin2022review.R
+import com.example.kotlin2022review.components.TestServiceActivity
 
 class SecondFragment :Fragment()
 {
@@ -56,6 +59,20 @@ class SecondFragment :Fragment()
         val textView = view as TextView
 
         textView.text=tabNameString
+
+        //这里希望点击中间文本，打开测试 service 的activity
+        textView.setOnClickListener(object:View.OnClickListener
+        {
+            override fun onClick(p0: View?) {
+                //startActivity(Intent(context,TestServiceActivity::class.java))
+
+                val intent = Intent(context, TestServiceActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+        )
+
 
 
 
