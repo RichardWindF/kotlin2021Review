@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.kotlin2022review.R
 
 class SecondFragment :Fragment()
 {
@@ -45,6 +46,24 @@ class SecondFragment :Fragment()
         return textView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val tabNameString = arguments?.getString("tab")    // 获取了 SecondActivity.kt 传来的值
+        //R.id.container   //创建了view后有了view可以操作
+
+        //view 先转成Text view 对象，再设文本内容
+        val textView = view as TextView
+
+        textView.text=tabNameString
+
+
+
+    }
+
+    //----------------------------
+
+
     override fun onStart()
     {
         super.onStart()
@@ -61,6 +80,7 @@ class SecondFragment :Fragment()
     {
         super.onPause()
         Log.e(TAG, "onPause: ", )
+
     }
 
     override fun onStop()
