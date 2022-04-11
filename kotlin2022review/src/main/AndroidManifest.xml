@@ -40,6 +40,9 @@
         <service android:name=".components.TestService1" />
 
         <activity android:name=".components.TestServiceActivity" />
+
+
+        <service android:name=".components.TestService2"> </service>
     </application>
 
 </manifest>
