@@ -3,6 +3,7 @@
     package="com.example.kotlin2022review">
 
     <!-- 为了测试 OkHttp and Retrofit -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -40,9 +41,24 @@
         <service android:name=".components.TestService1" />
 
         <activity android:name=".components.TestServiceActivity" />
+        <activity android:name=".components.TestBroadcastReceiverActivity"></activity>
 
+        <service android:name=".components.TestService2"></service>
 
-        <service android:name=".components.TestService2"> </service>
+        <!-- 下面是演示静态注册broadcast, receiver标签， -->
+        <receiver
+            android:name=".components.TestBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <intent-filter>
+                    <!--                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> 这个不可以-->
+                    <action android:name="an" />
+
+                </intent-filter>
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>
