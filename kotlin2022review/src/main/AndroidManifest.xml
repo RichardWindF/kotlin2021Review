@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- 测试 ContentProvider -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,11 +24,11 @@
         <activity
             android:name=".SecondActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity
             android:name=".MainActivity"
@@ -49,15 +53,26 @@
         <receiver
             android:name=".components.TestBroadcastReceiver"
             android:exported="true">
-            <intent-filter>
-                <intent-filter>
-                    <!--                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> 这个不可以-->
-                    <action android:name="an" />
+<!--            <intent-filter>-->
+<!--                <intent-filter>-->
+<!--                    &lt;!&ndash;                    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> 这个不可以&ndash;&gt;-->
+<!--                    <action android:name="an" />-->
 
-                </intent-filter>
-            </intent-filter>
+<!--                </intent-filter>-->
+<!--            </intent-filter>-->
 
         </receiver>
+
+        <!-- 测试 ContentProvider -->
+        <activity android:name=".components.TestContentProviderActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
     </application>
 
