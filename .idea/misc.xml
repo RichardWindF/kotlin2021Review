@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_content_provider_test.xml" value="0.176" />
         <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_second.xml" value="0.22" />
         <entry key="..\:/Users/kaka3/AndroidStudioProjects/kotlin2022Review/kotlin2022review/src/main/res/layout/activity_test_service.xml" value="0.4" />
@@ -31,7 +32,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.4" />
+        <option name="scale" value="0.176" />
       </ProjectState>
     </option>
   </component>

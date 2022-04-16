@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/add_contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="增-insert"
+        android:textSize="10sp"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:id="@+id/del_contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删-delete"
+        android:textSize="10sp"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:id="@+id/get_contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查-query"
+        android:textSize="10sp"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:id="@+id/update_contact_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="改-update"
+        android:textSize="10sp"
+        android:layout_marginLeft="5dp"/>
+
+</LinearLayout>
